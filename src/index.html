@@ -5,9 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Image Finder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Asset&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
   </head>
 
   <body>
+    <h1 class="title">Let's find smth interesting...</h1>
+    <form class="search-form js-search-form">
+      <input 
+      type="text" 
+      name="query" 
+      autocomplete="off" 
+      placeholder="Search images..." 
+      />
+      
+      <button type="submit" class="search-btn js-search-btn">Search</button>
+    </form>
+
+    <ul class="gallery js-gallery">
+      <!-- Список <li> с карточками изображений -->
+    </ul>
+
+  <button 
+    type="button" 
+    class="btn btn-primary button" 
+    data-action="load-more">
+    <span 
+      class="spinner-border spinner-border-sm spinner is-hidden" 
+      role="status" 
+      aria-hidden="true">
+    </span>
+  
+    <span class="label">Load more</span>
+  </button>
+
   </body>
 </html>
