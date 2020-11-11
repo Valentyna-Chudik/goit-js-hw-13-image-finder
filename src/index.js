@@ -1,9 +1,11 @@
 import './styles.css';
 
+import animateScrollTo from 'animated-scroll-to';
+
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 
-import * as basicLightbox from 'basiclightbox';
+// import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 
 import imgsTpl from './templates/image-card.hbs';
@@ -16,6 +18,7 @@ import LoadMoreBtn from './js/load-more-btn.js';
 const refs = {
     searchForm: document.querySelector('.js-search-form'),
     imgsContainer: document.querySelector('.js-gallery'),
+    
     // loadMoreBtn: document.querySelector('[data-action="load-more"]'),
 };
 
@@ -48,6 +51,7 @@ function fetchImgs() {
     newsApiService.fetchImgs().then(hits => {
         renderImgsMarkup(hits);
         loadMoreBtn.enable();
+        scrollTo();
     });
 };
 
@@ -58,3 +62,14 @@ function renderImgsMarkup(hits) {
 function clearImgsContainer() {
     refs.imgsContainer.innerHTML = '';
 };
+
+function scrollTo() {
+   const scrollToIndex = 12 * (newsApiService.page - 1) - 11;
+  const scrollToElement = refs.imgsContainer.children[scrollToIndex];
+  const options = {
+    speed: 1500,
+    verticalOffset: -15,
+  };
+
+  animateScrollTo(scrollToElement, options);
+}
