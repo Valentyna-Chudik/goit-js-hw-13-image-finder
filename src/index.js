@@ -12,14 +12,12 @@ import imgsTpl from './templates/image-card.hbs';
 
 import NewsApiService from './js/apiService.js';
 import LoadMoreBtn from './js/load-more-btn.js';
-// import errorNotification from './js/notice-error.js';
+import notification from './js/notice-error.js';
 
 
 const refs = {
     searchForm: document.querySelector('.js-search-form'),
-    imgsContainer: document.querySelector('.js-gallery'),
-    
-    // loadMoreBtn: document.querySelector('[data-action="load-more"]'),
+    imgsContainer: document.querySelector('.js-gallery'), 
 };
 
 const loadMoreBtn = new LoadMoreBtn({
@@ -37,9 +35,10 @@ function onSearch(evt) {
    
     newsApiService.query = evt.currentTarget.elements.query.value;
 
-    // if (newsApiService.query === '') {
-    //     return alert("Enter your query");
-    // }
+    if (newsApiService.query === '') {
+        return notification.noticeNoQuery();
+    }
+
     loadMoreBtn.show();
     newsApiService.resetPage();
     clearImgsContainer(); 
@@ -52,6 +51,11 @@ function fetchImgs() {
         renderImgsMarkup(hits);
         loadMoreBtn.enable();
         scrollTo();
+
+        if (hits.length === 0) {
+            loadMoreBtn.hide();
+            return notification.errorNoResults();
+        }
     });
 };
 

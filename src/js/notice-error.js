@@ -1,11 +1,18 @@
-import { error } from '@pnotify/core';
+import { notice, error} from '@pnotify/core';
 
-function noticeNoResults() {
+function noticeNoQuery() {
+  notice({
+    text: 'Please, enter your query.',
+    delay: 1000,
+  });
+}
+
+
+function errorNoResults() {
   error({
-    title: '404',
     text: 'No results found. Please try another search.',
     delay: 1000,
   });
 }
 
-export default { noticeNoResults };
+export default { noticeNoQuery, errorNoResults};
