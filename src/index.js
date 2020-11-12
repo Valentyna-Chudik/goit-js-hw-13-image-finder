@@ -5,7 +5,7 @@ import animateScrollTo from 'animated-scroll-to';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 
-// import * as basicLightbox from 'basiclightbox';
+import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 
 import imgsTpl from './templates/image-card.hbs';
@@ -29,6 +29,7 @@ const newsApiService = new NewsApiService();
 
 refs.searchForm.addEventListener('submit', onSearch);
 loadMoreBtn.refs.button.addEventListener('click', fetchImgs);
+refs.imgsContainer.addEventListener('click', onOpenModal);
 
 function onSearch(evt) {
     evt.preventDefault();
@@ -68,7 +69,7 @@ function clearImgsContainer() {
 };
 
 function scrollTo() {
-   const scrollToIndex = 12 * (newsApiService.page - 1) - 11;
+  const scrollToIndex = 12 * (newsApiService.page - 1) - 11;
   const scrollToElement = refs.imgsContainer.children[scrollToIndex];
   const options = {
     speed: 1500,
@@ -76,4 +77,25 @@ function scrollTo() {
   };
 
   animateScrollTo(scrollToElement, options);
-}
+};
+
+// // ScrollToBottom
+// function scrollTo() {
+//    window.scrollTo({
+//   top: document.body.scrollHeight,
+//   left: 0,
+//   behavior: 'smooth'
+// });
+// }
+
+// Modal Window Opening
+function onOpenModal(evt) {
+  evt.preventDefault();
+
+  if (evt.target.nodeName !== 'IMG') {
+    return;
+  }
+
+  const largeImage = `<img src= ${evt.target.dataset.source}>`;
+  basicLightbox.create(largeImage).show();
+};
