@@ -12,14 +12,14 @@ html {
 body {
   text-align: center;
   /* background-image: url('./images/bg-img.jpg'); */
-  background-color: pink;
-  /* background-image: linear-gradient(
+  background-color: rgba(226, 226, 226, 0.6);
+  background-image: linear-gradient(
       to right,
       rgba(226, 226, 226, 0.6),
       rgba(226, 226, 226, 0.6)
     ),
     url('./images/bg-img2.jpg');
-  background-size: cover; */
+  background-size: cover;
 }
 
 .title {
