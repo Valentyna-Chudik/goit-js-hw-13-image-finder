@@ -1,4 +1,4 @@
-import { notice, error} from '@pnotify/core';
+import { notice, error } from '@pnotify/core';
 
 function noticeNoQuery() {
   notice({
@@ -7,7 +7,6 @@ function noticeNoQuery() {
   });
 }
 
-
 function errorNoResults() {
   error({
     text: 'No results found. Please try another search.',
@@ -15,4 +14,4 @@ function errorNoResults() {
   });
 }
 
-export default { noticeNoQuery, errorNoResults};
+export default { noticeNoQuery, errorNoResults };

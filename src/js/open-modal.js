@@ -10,4 +10,4 @@ export default function onOpenModal(evt) {
 
   const largeImage = `<img src= ${evt.target.dataset.source}>`;
   basicLightbox.create(largeImage).show();
-};
+}
